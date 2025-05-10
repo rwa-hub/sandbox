@@ -1,0 +1,12 @@
+[submodule "packages/web/web-pannel-admin"]
+	path = packages/web/pannel-admin
+	url = https://github.com/rwa-hub/web-pannel-admin
+[submodule "packages/web/marketplace"]
+	path = packages/web/marketplace
+	url = https://github.com/rwa-hub/marketplace
+[submodule "packages/blockchain/indexer"]
+	path = packages/blockchain/indexer
+	url = https://github.com/rwa-hub/blockchain-indexer
+[submodule "packages/blockchain/smart-contracts"]
+	path = packages/blockchain/smart-contracts
+	url = https://github.com/rwa-hub/smart-contracts 

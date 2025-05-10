@@ -1,0 +1,30 @@
+{
+    "folders": [
+        {
+            "name": "🏠 RWA Hub Root",
+            "path": "."
+        },
+        {
+            "name": "📦 Blockchain Monitor",
+            "path": "packages/blockchain/monitor"
+        },
+        {
+            "name": "📦 Smart Contracts",
+            "path": "packages/blockchain/smart-contracts"
+        },
+        {
+            "name": "🌐 AdminPannel",
+            "path": "packages/webapps/admin"
+        },
+        {
+            "name": "🌐 Marketplace",
+            "path": "packages/webapps/marketplace"
+        }
+    ],
+    "settings": {
+        "git.ignoredRepositories": [],
+        "files.exclude": {
+            "packages/": true
+        }
+    }
+} 

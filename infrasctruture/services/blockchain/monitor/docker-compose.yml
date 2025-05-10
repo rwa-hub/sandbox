@@ -1,0 +1,46 @@
+services:
+  rwa-blockchain-monitor:
+    build:
+      context: ../../../../packages/blockchain/monitor
+      dockerfile: Dockerfile
+    container_name: rwa-blockchain-monitor
+    ports:
+      - "8082:8082"
+    volumes:
+      - ../../../../packages/blockchain/monitor:/app
+      - go-cache:/go/pkg/mod
+      - go-build-cache:/root/.cache/go-build
+    env_file:
+      - ../../../../packages/blockchain/monitor/.env
+    environment:
+      - GO111MODULE=on
+      - CGO_ENABLED=0
+      - GOOS=linux
+      - GOARCH=amd64
+      - APP_ENV=development
+    depends_on:
+      rwa-rabbitmq:
+        condition: service_healthy
+      rwa-mongodb:
+        condition: service_healthy
+    networks:
+      - rwa-hub-network
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8082/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  rwa-hub-network:
+    external: true
+
+volumes:
+  go-cache:
+    name: rwa-blockchain-monitor-go-cache
+  go-build-cache:
+    name: rwa-blockchain-monitor-go-build-cache

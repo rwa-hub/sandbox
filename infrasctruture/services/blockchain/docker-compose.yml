@@ -1,0 +1,10 @@
+services:
+  monitor:
+    extends:
+      file: ./monitor/docker-compose.yml
+      service: monitor-service
+
+networks:
+  blockchain-network:
+    name: blockchain-network
+    driver: bridge

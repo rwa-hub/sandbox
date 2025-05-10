@@ -1,0 +1,32 @@
+services:
+  rwa-rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rwa-rabbitmq
+    ports:
+      - "5672:5672" # AMQP protocol port
+      - "15672:15672" # Management UI
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER:-guest}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD:-guest}
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - rwa-hub-network
+    # Healthcheck para garantir que o RabbitMQ está pronto
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    restart: unless-stopped
+
+
+volumes:
+  rabbitmq_data:
+    name: rwa-rabbitmq-data
+
+networks:
+  rwa-hub-network:
+    external: true
+

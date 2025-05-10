@@ -1,0 +1,49 @@
+services:
+  # Infrastructure Services
+  rwa-mongodb:
+    extends:
+      file: ./db/docker-compose.yml
+      service: rwa-mongodb
+    networks:
+      - rwa-hub-network
+
+  rwa-rabbitmq:
+    extends:
+      file: ./rabbitMQ/docker-compose.yml
+      service: rwa-rabbitmq
+    networks:
+      - rwa-hub-network
+
+  # Blockchain Services
+  rwa-blockchain-monitor:
+    extends:
+      file: ./services/blockchain/monitor/docker-compose.yml
+      service: rwa-blockchain-monitor
+    networks:
+      - rwa-hub-network
+    depends_on:
+      - rwa-mongodb
+      - rwa-rabbitmq
+
+ 
+
+networks:
+  rwa-hub-network:
+    external: true
+    name: rwa-hub-network
+
+volumes:
+  # MongoDB volumes
+  mongodb_data:
+    name: rwa-mongodb-data
+  mongodb_config:
+    name: rwa-mongodb-config
+  # RabbitMQ volumes
+  rabbitmq_data:
+    name: rwa-rabbitmq-data
+
+  # Monitor volumes
+  go-cache:
+    name: rwa-blockchain-monitor-go-cache
+  go-build-cache:
+    name: rwa-blockchain-monitor-go-build-cache

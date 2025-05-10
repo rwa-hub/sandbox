@@ -1,0 +1,49 @@
+services:
+  rwa-mongodb:
+    image: mongo:latest
+    container_name: rwa-mongodb
+    command: mongod --wiredTigerCacheSizeGB 1.5 --setParameter maxTransactionLockRequestTimeoutMillis=5000
+    ports:
+      - "27017:27017"
+    env_file:
+      - .env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER:-admin}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD:-password123}
+      - MONGO_INITDB_DATABASE=admin
+    volumes:
+      - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    networks:
+      - rwa-hub-network
+    # Healthcheck para garantir que o MongoDB está pronto
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh --quiet mongodb://${MONGO_USER:-admin}:${MONGO_PASSWORD:-password123}@localhost:27017/admin
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
+    ulimits:
+      nproc: 64000
+      nofile:
+        soft: 64000
+        hard: 64000
+    restart: unless-stopped
+
+volumes:
+  mongodb_data:
+    name: rwa-mongodb-data
+  mongodb_config:
+    name: rwa-mongodb-config
+
+networks:
+  rwa-hub-network:
+    external: true
+
