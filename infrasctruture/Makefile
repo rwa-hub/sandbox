@@ -62,6 +62,7 @@ help:
 # Configura arquivos .env
 setup-env:
 	@echo "$(CYAN)$(SETUP_ENV_MSG)$(RESET)"
+	@mkdir -p ./db
 	@if [ ! -f "./db/.env" ]; then \
 		echo "Criando ./db/.env..."; \
 		echo "# MongoDB Configuration" > ./db/.env; \
@@ -72,6 +73,7 @@ setup-env:
 		echo "MONGO_MEMORY_LIMIT=2G" >> ./db/.env; \
 		echo "MONGO_MEMORY_REQUEST=1G" >> ./db/.env; \
 	fi
+	@mkdir -p ./rabbitMQ
 	@if [ ! -f "./rabbitMQ/.env" ]; then \
 		echo "Criando ./rabbitMQ/.env..."; \
 		echo "# RabbitMQ Configuration" > ./rabbitMQ/.env; \
@@ -81,6 +83,7 @@ setup-env:
 		echo "RABBITMQ_PORT=5672" >> ./rabbitMQ/.env; \
 		echo "RABBITMQ_MANAGEMENT_PORT=15672" >> ./rabbitMQ/.env; \
 	fi
+	@mkdir -p ../packages/blockchain/monitor
 	@if [ ! -f "../packages/blockchain/monitor/.env" ]; then \
 		echo "Criando ../packages/blockchain/monitor/.env..."; \
 		echo "RPC_URL=ws://host.docker.internal:8546" > ../packages/blockchain/monitor/.env; \
