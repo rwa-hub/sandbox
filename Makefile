@@ -1,4 +1,4 @@
- # =============================================================================
+# =============================================================================
 # RWA Hub Sandbox - Makefile
 # =============================================================================
 
@@ -22,16 +22,22 @@ BLOCKCHAIN_INDEXER_REPO := https://github.com/rwa-hub/blockchain-indexer.git
 BLOCKCHAIN_CONTRACTS_REPO := https://github.com/rwa-hub/smart-contracts.git
 
 # Targets
-.PHONY: clean submodules infra setup help
+.PHONY: clean clean-lib-git submodules infra setup help
 
 help:
 	@echo "$(CYAN)RWA Hub Sandbox - Comandos:$(RESET)"
-	@echo "  make clean      - Limpa tudo"
-	@echo "  make submodules - Configura submódulos"
-	@echo "  make infra      - Configura infraestrutura"
-	@echo "  make setup      - Configura tudo"
+	@echo "  make clean          - Limpa tudo"
+	@echo "  make clean-lib-git  - Limpa .git dos submódulos da pasta lib"
+	@echo "  make submodules     - Configura submódulos"
+	@echo "  make infra          - Configura infraestrutura"
+	@echo "  make setup          - Configura tudo"
 
-clean:
+clean-lib-git:
+	@echo "$(YELLOW)🧹 Limpando .git dos submódulos da pasta lib...$(RESET)"
+	@rm -rf $(PACKAGES_DIR)/blockchain/smart-contracts/lib/*/.git || true
+	@echo "$(GREEN)✨ Submódulos da lib limpos!$(RESET)"
+
+clean: clean-lib-git
 	@echo "$(YELLOW)🧹 Limpando tudo...$(RESET)"
 	@cd $(INFRA_DIR) && make infra-clean || true
 	@git submodule deinit -f --all || true
