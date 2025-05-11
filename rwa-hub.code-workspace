@@ -5,26 +5,48 @@
             "path": "."
         },
         {
-            "name": "📦 Blockchain Monitor",
-            "path": "packages/blockchain/monitor"
+            "name": "📦 Blockchain Indexer",
+            "path": "packages/blockchain/indexer"
         },
         {
             "name": "📦 Smart Contracts",
             "path": "packages/blockchain/smart-contracts"
         },
         {
-            "name": "🌐 AdminPannel",
-            "path": "packages/webapps/admin"
+            "name": "🌐 Marketplace",
+            "path": "packages/web/marketplace"
         },
         {
-            "name": "🌐 Marketplace",
-            "path": "packages/webapps/marketplace"
+            "name": "🌐 Admin Panel",
+            "path": "packages/web/pannel-admin"
         }
     ],
     "settings": {
         "git.ignoredRepositories": [],
         "files.exclude": {
-            "packages/": true
-        }
+            "node_modules": true,
+            "**/.git": true,
+            "**/.svn": true,
+            "**/.hg": true,
+            "**/CVS": true,
+            "**/.DS_Store": true
+        },
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": "explicit"
+        },
+        "typescript.tsdk": "node_modules/typescript/lib",
+        "typescript.enablePromptUseWorkspaceTsdk": true,
+        "javascript.updateImportsOnFileMove.enabled": "always",
+        "typescript.updateImportsOnFileMove.enabled": "always"
+    },
+    "extensions": {
+        "recommendations": [
+            "dbaeumer.vscode-eslint",
+            "esbenp.prettier-vscode",
+            "mikestead.dotenv",
+            "ms-azuretools.vscode-docker",
+            "streetsidesoftware.code-spell-checker"
+        ]
     }
 } 
