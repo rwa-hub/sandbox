@@ -1,17 +1,17 @@
 services:
-  rwa-blockchain-monitor:
+  rwa-blockchain-indexer:
     build:
-      context: ../../../../packages/blockchain/monitor
+      context: ../../../../packages/blockchain/indexer
       dockerfile: Dockerfile
-    container_name: rwa-blockchain-monitor
+    container_name: rwa-blockchain-indexer
     ports:
       - "8082:8082"
     volumes:
-      - ../../../../packages/blockchain/monitor:/app
+      - ../../../../packages/blockchain/indexer:/app
       - go-cache:/go/pkg/mod
       - go-build-cache:/root/.cache/go-build
     env_file:
-      - ../../../../packages/blockchain/monitor/.env
+      - ../../../../packages/blockchain/indexer/.env
     environment:
       - GO111MODULE=on
       - CGO_ENABLED=0
@@ -41,6 +41,6 @@ networks:
 
 volumes:
   go-cache:
-    name: rwa-blockchain-monitor-go-cache
+    name: rwa-blockchain-indexer-go-cache
   go-build-cache:
-    name: rwa-blockchain-monitor-go-build-cache
+    name: rwa-blockchain-indexer-go-build-cache

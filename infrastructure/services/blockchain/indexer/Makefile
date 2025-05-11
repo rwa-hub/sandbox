@@ -9,7 +9,7 @@ CYAN := \033[36m
 RESET := \033[0m
 
 # Variáveis do projeto
-PROJECT_ROOT := ../../../../packages/blockchain/monitor
+PROJECT_ROOT := ../../../../packages/blockchain/indexer
 DOCKER_COMPOSE := docker-compose -f docker-compose.yml
 
 # Mensagens
@@ -32,7 +32,7 @@ LINT_MSG := "🔍 Verificando código..."
 
 # Ajuda
 help:
-	@echo "$(BOLD)🛠️  Monitor Service - Comandos Disponíveis:$(RESET)"
+	@echo "$(BOLD)🛠️  Monitor Indexer Service - Comandos Disponíveis:$(RESET)"
 	@echo ""
 	@echo "$(BOLD)Comandos de Desenvolvimento:$(RESET)"
 	@echo "  $(CYAN)make dev$(RESET)          - Inicia ambiente de desenvolvimento completo"

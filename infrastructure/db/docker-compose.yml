@@ -2,15 +2,14 @@ services:
   rwa-mongodb:
     image: mongo:latest
     container_name: rwa-mongodb
-    command: mongod --wiredTigerCacheSizeGB 1.5 --setParameter maxTransactionLockRequestTimeoutMillis=5000
     ports:
-      - "27017:27017"
+      - "${MONGO_PORT:-27017}:27017"
     env_file:
       - .env
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER:-admin}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD:-password123}
-      - MONGO_INITDB_DATABASE=admin
+      - MONGO_INITDB_DATABASE=${MONGO_DATABASE:-rwa_hub}
     volumes:
       - mongodb_data:/data/db
       - mongodb_config:/data/configdb
@@ -27,14 +26,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 2G
+          memory: ${MONGO_MEMORY_LIMIT:-2G}
         reservations:
-          memory: 1G
-    ulimits:
-      nproc: 64000
-      nofile:
-        soft: 64000
-        hard: 64000
+          memory: ${MONGO_MEMORY_REQUEST:-1G}
     restart: unless-stopped
 
 volumes:

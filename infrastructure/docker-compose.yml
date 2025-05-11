@@ -1,5 +1,5 @@
 services:
-  # Infrastructure Services
+  # infrastructure Services
   rwa-mongodb:
     extends:
       file: ./db/docker-compose.yml
@@ -15,10 +15,10 @@ services:
       - rwa-hub-network
 
   # Blockchain Services
-  rwa-blockchain-monitor:
+  rwa-blockchain-indexer:
     extends:
-      file: ./services/blockchain/monitor/docker-compose.yml
-      service: rwa-blockchain-monitor
+      file: ./services/blockchain/indexer/docker-compose.yml
+      service: rwa-blockchain-indexer
     networks:
       - rwa-hub-network
     depends_on:
@@ -44,6 +44,6 @@ volumes:
 
   # Monitor volumes
   go-cache:
-    name: rwa-blockchain-monitor-go-cache
+    name: rwa-blockchain-indexer-go-cache
   go-build-cache:
-    name: rwa-blockchain-monitor-go-build-cache
+    name: rwa-blockchain-indexer-go-build-cache

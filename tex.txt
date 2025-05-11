@@ -1,22 +1,14 @@
-rm -rf ./forge-std/.git ./openzeppelin-contracts-upgradeable/.git ./openzeppelin-contracts/.git ./T-REX/.git
-
-RPC_URL=ws://host.docker.internal:8546
 # App Configuration
 APP_ENV=development
-APP_PORT=8082
+APP_PORT=8081
 
 # MongoDB Connection
 MONGO_URI=mongodb://admin:password123@rwa-mongodb:27017/rwa_hub?authSource=admin
 
 # RabbitMQ Connection
 RABBITMQ_URI=amqp://guest:guest@rwa-rabbitmq:5672/
+RABBITMQ_QUEUE_NAME=indexer-events
 
-CONTRACT_COMPLIANCE=0x9F035Be9853eb3Fc10155361fda197C159eFDD09
-CONTRACT_MODULAR_COMPLIANCE=0xf935973e9f884c66e6E3ce681344064e565e0250
-CONTRACT_IDENT_REGISTRY_STORAGE=0xE777fAf8240196bA99c6e2a89E8F24B75C52Eb2a
-CONTRACT_REGISTRY_MD=0x9e699d6c7ccf183F0B09675A9E867d1486EEF85b
-CONTRACT_IDENTITY_REGISTRY=0x9e699d6c7ccf183F0B09675A9E867d1486EEF85b
-CONTRACT_TOKEN_RWA=0x66D5dD63fC9655a36B0bAe3BA619B7Cc2eCd6507
-
-
-RABBITMQ_QUEUE_NAME=monitor-events
+# Blockchain Configuration
+RPC_URL=ws://host.docker.internal:8546
+CHAIN_ID=1337

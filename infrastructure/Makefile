@@ -1,5 +1,5 @@
 # =============================================================================
-# RWA Hub Infrastructure Makefile
+# RWA Hub infrastructure Makefile
 # =============================================================================
 # Autor: RWA Hub Team
 # Data: 2024
@@ -68,7 +68,7 @@ SETUP_DEPS_MSG := "📦 Instalando dependências Node.js..."
 # =============================================================================
 help:
 	@echo "$(BOLD)╔════════════════════════════════════════════════════════════╗$(RESET)"
-	@echo "$(BOLD)║                   RWA Hub Infrastructure                   ║$(RESET)"
+	@echo "$(BOLD)║                   RWA Hub infrastructure                   ║$(RESET)"
 	@echo "$(BOLD)╚════════════════════════════════════════════════════════════╝$(RESET)"
 	@echo ""
 	@echo "$(BOLD)▶ COMANDOS PRINCIPAIS$(RESET)"
@@ -156,7 +156,7 @@ infra-logs:
 
 logs-monitor:
 	@echo "$(CYAN)📋 Logs do Monitor:$(RESET)"
-	@$(DOCKER_COMPOSE) logs -f rwa-blockchain-monitor
+	@$(DOCKER_COMPOSE) logs -f rwa-blockchain-indexer
 
 logs-mongodb:
 	@echo "$(CYAN)📋 Logs do MongoDB:$(RESET)"

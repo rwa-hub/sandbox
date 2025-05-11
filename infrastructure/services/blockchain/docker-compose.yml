@@ -1,0 +1,9 @@
+services:
+  rwa-blockchain-indexer:
+    extends:
+      file: ./indexer/docker-compose.yml
+      service: rwa-blockchain-indexer
+
+networks:
+  rwa-hub-network:
+    external: true
